@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Responsive After School Programs Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="brand-logo">
+                <img src="./Images/class-measures-logo.jpg" alt="Class Measures Company Logo" class="logo-image">
+                <span class="logo-text">Class Measures</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-button">Home</a></li>
+                <li><a href="#" class="nav-button">Programs</a></li>
+                <li><a href="#" class="nav-button">About</a></li>
+                <li><a href="#" class="nav-button">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- grid Section -->
+        <section class="grid-layout">
+            <div class="content">
+                <h1>Welcome to our Bootcamp</h1>
+                <p>Learn Coding, Chess, French & Reading this holiday!</p>
+            </div>
+            <aside class="sidebar">
+                <h2>Upcoming Dates</h2>
+                <ul>
+                    <li>April 14 – Start</li>
+                    <li>April 20 – Project Demo</li>
+                </ul>
+            </aside>
+        </section>
+
+        <!-- Program Overview -->
+        <section class="div-container">
+            <h1>After School Program</h1>
+            <p>Welcome to our after school program! We offer a variety of activities for children of all ages.</p>
+            <p>At Class Measures Limited, we are passionate about empowering young minds through creative, fun, and impactful learning experiences. Since our founding in 2019, we’ve worked closely with schools and parents to provide high-quality afterschool programs and learning materials that spark curiosity, build confidence, and nurture essential 21st-century skills.</p>
+            <p>Our programs are designed to be engaging, educational, and enjoyable, ensuring that children not only learn but also have fun while doing so. We believe that every child has the potential to excel, and we are committed to helping them reach their full potential.</p>
+            <p>Join us in our mission to inspire the next generation of thinkers, creators, and leaders!</p>
+ 
+            <section class="carousel">
+                <div class="carousel-container">
+                  <img src="./Images/coding-image.jpg" class="carousel-image active" alt="Slide 1">
+                  <img src="./Images/coding-html.jpg" class="carousel-image" alt="Slide 2">
+                  <img src="./Images/french.jpg" class="carousel-image" alt="Slide 3">
+                  <img src="./Images/Reading.jpg" class="carousel-image" alt="Slide 4">
+                  <img src="./Images/Library.jpg" class="carousel-image" alt="Slide 5">
+                  <img src="./Images/tournament.jpg" class="carousel-image" alt="Slide 6">
+                  <img src="./Images/Chess.jpg" class="carousel-image" alt="Slide 7">
+                </div>
+                <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
+                <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
+              </section>
+              
+          
+        </section>
+        
+    </main>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section">
+        <h2>Contact Us</h2>
+        <p>We’d love to hear from you! Fill out the form below and we’ll be in touch.</p>
+        <form id="contactForm" class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+            <p id="form-response" class="form-response"></p>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Class Measures Ltd</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Form validation + confirmation
+        const form = document.getElementById('contactForm');
+        const response = document.getElementById('form-response');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = form.name.value.trim();
+            const email = form.email.value.trim();
+            const message = form.message.value.trim();
+
+            if (!name || !email || !message) {
+                response.textContent = "Please fill in all fields.";
+                response.style.color = "red";
+                return;
+            }
+
+            // Fake submission (can be replaced with backend integration)
+            response.textContent = `Thanks ${name}, your message has been received!`;
+            response.style.color = "green";
+            form.reset();
+        });
+    // Carousel logic
+    let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-image');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
